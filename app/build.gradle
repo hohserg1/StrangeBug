@@ -1,0 +1,85 @@
+buildscript {
+    repositories {
+        maven { url = 'https://files.minecraftforge.net/maven' }
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.+', changing: true
+        classpath "com.github.jengelman.gradle.plugins:shadow:6.1.0"
+    }
+}
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'java'
+//apply plugin: "com.github.johnrengelman.shadow"
+
+group 'hohserg'
+version '1.0'
+
+sourceCompatibility = 1.8
+
+minecraft {
+    mappings channel: 'snapshot', version: '20201028-1.16.3'
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+            mods {
+                examplemod {
+                    source sourceSets.main
+                }
+            }
+        }
+        server {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+            mods {
+                examplemod {
+                    source sourceSets.main
+                }
+            }
+        }
+        data {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+            args '--mod', 'examplemod', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            mods {
+                examplemod {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.16.4-35.1.10'
+
+    compileOnly 'com.squareup:javapoet:1.13.0'
+    compileOnly project(":annotation-processor")
+    implementation project(":common")
+    annotationProcessor project(":annotation-processor")
+
+}
+jar {
+    manifest {
+        attributes([
+                "Specification-Title"     : "strange_bug",
+                "Specification-Vendor"    : "strange_bug",
+                "Specification-Version"   : "1", // We are version 1 of ourselves
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : "${version}",
+                "Implementation-Vendor"   : "strange_bug",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+
+jar.finalizedBy('reobfJar')

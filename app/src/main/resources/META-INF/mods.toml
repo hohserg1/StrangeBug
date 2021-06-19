@@ -1,0 +1,45 @@
+modLoader="javafml"
+
+loaderVersion="[35,)"
+
+license="LGPL-3.0 License"
+
+issueTrackerURL="https://github.com/ElegantNetworking/ElegantNetworking_1.16/issues"
+
+[[mods]] 
+
+modId="strange_bug"
+
+version="1.0"
+ 
+displayName="StrangeBug"
+
+displayURL="https://github.com/ElegantNetworking/ElegantNetworkingRoot"
+
+credits='''
+''' 
+
+authors="hohserg" 
+
+description='''
+'''
+
+[[dependencies.strange_bug]] 
+    
+    modId="forge" 
+    
+    mandatory=true 
+    
+    versionRange="[35,)" 
+    
+    ordering="NONE"
+    
+    side="BOTH"
+
+[[dependencies.strange_bug]]
+    modId="minecraft"
+    mandatory=true
+
+    versionRange="[1.16.4,1.17)"
+    ordering="NONE"
+    side="BOTH"

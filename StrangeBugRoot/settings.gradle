@@ -1,0 +1,5 @@
+rootProject.name = 'StrangeBugRoot'
+includeFlat 'app'
+includeFlat 'common'
+includeFlat 'annotation-processor'
+
