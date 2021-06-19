@@ -59,16 +59,25 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    extraLibs
+}
+
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.4-35.1.10'
 
     compileOnly 'com.squareup:javapoet:1.13.0'
     compileOnly project(":annotation-processor")
     implementation project(":common")
+    extraLibs project(":common")
     annotationProcessor project(":annotation-processor")
 
 }
 jar {
+    from {
+        configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    
     manifest {
         attributes([
                 "Specification-Title"     : "strange_bug",
