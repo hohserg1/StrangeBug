@@ -1,0 +1,5 @@
+rootProject.name = 'StrangeBug'
+include 'app'
+include 'common'
+include 'annotation-processor'
+

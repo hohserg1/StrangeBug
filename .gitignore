@@ -2,6 +2,6 @@
 /*/out/
 /*/bin/
 /*/run/
-/*/.gradle/
-/*/.idea/
+.gradle/
+.idea/
 *.class
